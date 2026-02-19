@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -22,35 +22,62 @@
     />
   </head>
   <body>
+    <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="#" class="nav-logo">
-          <span class="logo-leaf"><i class="fa-solid fa-leaf"></i></span>
+          <div class="logo-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path
+                d="M16 2C16 2 8 8 8 16C8 20.4183 11.5817 24 16 24C20.4183 24 24 20.4183 24 16C24 8 16 2 16 2Z"
+                fill="currentColor"
+                opacity="0.2"
+              />
+              <path
+                d="M16 2C16 2 8 8 8 16C8 20.4183 11.5817 24 16 24C20.4183 24 24 20.4183 24 16C24 8 16 2 16 2Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 16C12 18.2091 13.7909 20 16 20C18.2091 20 20 18.2091 20 16"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
           <span class="logo-text">Dali Massoterapeuta</span>
         </a>
+
         <ul class="nav-links" id="navLinks">
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#beneficios">Benefícios</a></li>
-          <li><a href="#depoimentos">Depoimentos</a></li>
-          <li><a href="#contato">Contato</a></li>
+          <li><a href="#inicio" class="nav-link">Início</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
           <li class="nav-mobile-cta">
             <a
               href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20sessão"
               target="_blank"
               class="btn btn-whatsapp-nav"
             >
-              <i class="fa-brands fa-whatsapp"></i> Agendar pelo WhatsApp
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Agendar Consulta</span>
             </a>
           </li>
         </ul>
+
         <a
           href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20sessão"
           class="nav-cta"
           target="_blank"
-          >Agendar</a
         >
+          <span>Agendar</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
         <button class="hamburger" id="hamburger" aria-label="Abrir menu">
           <span></span>
           <span></span>
@@ -61,313 +88,470 @@
 
     <div class="mobile-overlay" id="mobileOverlay"></div>
 
+    <!-- HERO -->
     <section class="hero" id="inicio">
-      <div class="hero-parallax-bg"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-particles" id="heroParticles"></div>
+      <div class="hero-bg">
+        <div class="hero-bg-gradient"></div>
+        <div class="hero-bg-image"></div>
+      </div>
+
       <div class="hero-content">
         <div class="hero-badge reveal-up">
-          <span class="badge-line"></span>
-          <span>Massoterapia Profissional</span>
-          <span class="badge-line"></span>
+          <span class="badge-dot"></span>
+          <span class="badge-text">Massoterapia Profissional</span>
         </div>
+
         <h1 class="hero-title">
           <span class="title-line reveal-up" style="--delay: 0.1s"
             >Renove seu</span
           >
           <span class="title-line title-accent reveal-up" style="--delay: 0.25s"
-            >Corpo & Alma</span
+            >Corpo & Mente</span
           >
         </h1>
+
         <p class="hero-subtitle reveal-up" style="--delay: 0.4s">
-          Técnicas terapêuticas personalizadas para aliviar dores, reduzir o
-          estresse e restaurar o equilíbrio do seu corpo.
+          Técnicas terapêuticas personalizadas que promovem equilíbrio, aliviam
+          tensões e restauram o bem-estar integral do seu corpo.
         </p>
+
         <div class="hero-actions reveal-up" style="--delay: 0.55s">
           <a
             href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20sessão"
-            class="btn btn-primary"
+            class="btn btn-primary btn-hover-effect"
             target="_blank"
           >
-            <i class="fa-brands fa-whatsapp" style="margin-right: 8px"></i>
-            Agendar pelo WhatsApp
+            <span class="btn-content">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Agendar pelo WhatsApp</span>
+            </span>
+            <span class="btn-background"></span>
           </a>
-          <a href="#servicos" class="btn btn-outline">Ver Serviços</a>
+          <a href="#servicos" class="btn btn-outline">
+            <span>Ver Serviços</span>
+          </a>
         </div>
       </div>
-      <div class="hero-scroll-indicator">
-        <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="scroll-indicator">
+          <div class="scroll-wheel"></div>
+        </div>
       </div>
     </section>
 
-    <div class="marquee-strip">
-      <div class="marquee-track">
-        <span><i class="fa-solid fa-leaf"></i> Relaxamento</span>
-        <span><i class="fa-solid fa-star-of-life"></i> Alívio de Dores</span>
-        <span><i class="fa-solid fa-leaf"></i> Bem-Estar</span>
-        <span><i class="fa-solid fa-star-of-life"></i> Equilíbrio</span>
-        <span><i class="fa-solid fa-leaf"></i> Saúde</span>
-        <span><i class="fa-solid fa-star-of-life"></i> Terapia Manual</span>
-        <span><i class="fa-solid fa-leaf"></i> Renovação</span>
-        <span><i class="fa-solid fa-star-of-life"></i> Qualidade de Vida</span>
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item reveal-up" style="--delay: 0.1s">
+            <div class="stat-icon">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-number" data-count="99">0</span>
+              <span class="stat-label">Anos de Experiência</span>
+            </div>
+          </div>
 
-        <span><i class="fa-solid fa-leaf"></i> Relaxamento</span>
-        <span><i class="fa-solid fa-star-of-life"></i> Alívio de Dores</span>
-        <span><i class="fa-solid fa-leaf"></i> Bem-Estar</span>
-        <span><i class="fa-solid fa-star-of-life"></i> Equilíbrio</span>
-        <span><i class="fa-solid fa-leaf"></i> Saúde</span>
-        <span><i class="fa-solid fa-star-of-life"></i> Terapia Manual</span>
-        <span><i class="fa-solid fa-leaf"></i> Renovação</span>
-        <span><i class="fa-solid fa-star-of-life"></i> Qualidade de Vida</span>
+          <div class="stat-item reveal-up" style="--delay: 0.2s">
+            <div class="stat-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-number" data-count="99">0</span>
+              <span class="stat-label">Clientes Atendidos</span>
+            </div>
+          </div>
+
+          <div class="stat-item reveal-up" style="--delay: 0.3s">
+            <div class="stat-icon">
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-number">99</span>
+              <span class="stat-label">Avaliação Média</span>
+            </div>
+          </div>
+
+          <div class="stat-item reveal-up" style="--delay: 0.4s">
+            <div class="stat-icon">
+              <i class="fa-solid fa-spa"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-number" data-count="99">0</span>
+              <span class="stat-label">Especializações</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- ABOUT -->
     <section class="about" id="sobre">
       <div class="container">
         <div class="about-grid">
           <div class="about-image-col reveal-left">
             <div class="about-image-wrapper">
-              <img
-                src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&h=800&fit=crop&crop=center"
-                alt="Ambiente terapêutico"
-                loading="lazy"
-              />
-            </div>
-            <div class="about-badge">
-              <span class="badge-number" data-count="10">0</span>
-              <span class="badge-label">Anos de<br />Experiência</span>
+              <div class="image-frame">
+                <img
+                  src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&h=1000&fit=crop&crop=center"
+                  alt="Ambiente terapêutico"
+                  loading="lazy"
+                />
+              </div>
+              <div class="about-decoration"></div>
             </div>
           </div>
+
           <div class="about-text-col reveal-right">
             <span class="section-tag">Sobre Mim</span>
             <h2 class="section-title">
               Cuidado dedicado ao seu <em>bem-estar</em>
             </h2>
-            <div class="about-divider">
-              <span>◆</span><span class="divider-line"></span>
+
+            <div class="about-text">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Aliquam, consequuntur nemo sapiente veritatis officiis maxime
+                placeat cupiditate quam ex. Inventore qui similique quis
+                debitis. Saepe reiciendis beatae fuga odio debitis.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Asperiores explicabo atque ipsa voluptate doloribus consequuntur
+                alias exercitationem nesciunt. In non libero quos vitae illo
+                iusto fugit, aut quia. Mollitia, consectetur.
+              </p>
             </div>
-            <p>
-              Com mais de 10 anos de experiência em massoterapia, dedico-me a
-              oferecer tratamentos personalizados que vão além do relaxamento
-              superficial. Cada sessão é cuidadosamente planejada para atender
-              às necessidades específicas do seu corpo.
-            </p>
-            <p>
-              Formada em Massoterapia com especializações em diversas técnicas
-              terapêuticas, busco constantemente me atualizar para oferecer o
-              melhor cuidado possível.
-            </p>
-            <!-- <div class="about-stats">
-              <div class="stat">
-                <span class="stat-num" data-count="2500">0</span
-                ><span class="stat-plus">+</span>
-                <span class="stat-label">Sessões</span>
+
+            <div class="about-features">
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fa-solid fa-certificate"></i>
+                </div>
+                <div class="feature-content">
+                  <h4>Lorem ipsum dolor</h4>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
               </div>
-              <div class="stat">
-                <span class="stat-num" data-count="800">0</span
-                ><span class="stat-plus">+</span>
-                <span class="stat-label">Clientes</span>
+
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="feature-content">
+                  <h4>Lorem ipsum dolor</h4>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
               </div>
-              <div class="stat">
-                <span class="stat-num" data-count="8">0</span>
-                <span class="stat-label">Especializações</span>
-              </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SERVICES -->
     <section class="services" id="servicos">
       <div class="container">
         <div class="section-header reveal-up">
           <span class="section-tag">Nossos Serviços</span>
           <h2 class="section-title">Tratamentos <em>Especializados</em></h2>
           <p class="section-sub">
-            Escolha o tratamento ideal e agende direto pelo WhatsApp.
+            Escolha o tratamento ideal para suas necessidades e agende direto
+            pelo WhatsApp
           </p>
         </div>
+
         <div class="services-grid">
+          <!-- Service Card 1 -->
           <article class="service-card reveal-up" style="--delay: 0.05s">
-            <div class="card-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"
-                alt="Massagem Relaxante"
-                loading="lazy"
-              />
-              <span class="card-tag">Mais Procurada</span>
+            <div class="card-header">
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"
+                  alt="Massagem Relaxante"
+                  loading="lazy"
+                />
+                <div class="card-overlay"></div>
+              </div>
+              <span class="card-badge badge-popular">
+                <i class="fa-solid fa-star"></i>
+                Mais Procurada
+              </span>
             </div>
+
             <div class="card-body">
-              <h3>Massagem Relaxante</h3>
-              <p>
+              <h3 class="card-title">Massagem Relaxante</h3>
+              <p class="card-description">
                 Movimentos longos e fluidos que promovem relaxamento profundo,
-                alívio do estresse e sensação de leveza.
+                alívio do estresse e sensação de leveza absoluta.
               </p>
+
+              <ul class="card-benefits">
+                <li><i class="fa-solid fa-check"></i> Reduz ansiedade</li>
+                <li><i class="fa-solid fa-check"></i> Melhora o sono</li>
+                <li><i class="fa-solid fa-check"></i> Alivia tensões</li>
+              </ul>
+
               <div class="card-footer">
-                <div class="card-meta">
-                  <span class="meta-time"
-                    ><i class="fa-regular fa-clock"></i> 60 min</span
-                  ><span class="meta-price">R$ 120</span>
+                <div class="card-info">
+                  <span class="info-duration">
+                    <i class="fa-regular fa-clock"></i>
+                    60 minutos
+                  </span>
+                  <span class="info-price">R$ 120</span>
                 </div>
                 <a
                   href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20Massagem%20Relaxante"
                   class="card-btn"
                   target="_blank"
-                  >Agendar →</a
                 >
+                  <span>Agendar</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
             </div>
           </article>
 
+          <!-- Service Card 2 -->
           <article class="service-card reveal-up" style="--delay: 0.1s">
-            <div class="card-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&h=400&fit=crop"
-                alt="Massagem Terapêutica"
-                loading="lazy"
-              />
+            <div class="card-header">
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&h=400&fit=crop"
+                  alt="Massagem Terapêutica"
+                  loading="lazy"
+                />
+                <div class="card-overlay"></div>
+              </div>
             </div>
+
             <div class="card-body">
-              <h3>Massagem Terapêutica</h3>
-              <p>
+              <h3 class="card-title">Massagem Terapêutica</h3>
+              <p class="card-description">
                 Técnica profunda focada em pontos de tensão e dores musculares.
-                Indicada para dores crônicas e contraturas.
+                Indicada para dores crônicas e contraturas persistentes.
               </p>
+
+              <ul class="card-benefits">
+                <li><i class="fa-solid fa-check"></i> Alivia dores crônicas</li>
+                <li><i class="fa-solid fa-check"></i> Libera tensões</li>
+                <li><i class="fa-solid fa-check"></i> Recupera mobilidade</li>
+              </ul>
+
               <div class="card-footer">
-                <div class="card-meta">
-                  <span class="meta-time"
-                    ><i class="fa-regular fa-clock"></i> 60 min</span
-                  ><span class="meta-price">R$ 150</span>
+                <div class="card-info">
+                  <span class="info-duration">
+                    <i class="fa-regular fa-clock"></i>
+                    60 minutos
+                  </span>
+                  <span class="info-price">R$ 150</span>
                 </div>
                 <a
                   href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20Massagem%20Terapêutica"
                   class="card-btn"
                   target="_blank"
-                  >Agendar →</a
                 >
+                  <span>Agendar</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
             </div>
           </article>
 
+          <!-- Service Card 3 -->
           <article class="service-card reveal-up" style="--delay: 0.15s">
-            <div class="card-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&h=400&fit=crop"
-                alt="Drenagem Linfática"
-                loading="lazy"
-              />
-              <span class="card-tag tag-sage">Saúde & Estética</span>
+            <div class="card-header">
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&h=400&fit=crop"
+                  alt="Drenagem Linfática"
+                  loading="lazy"
+                />
+                <div class="card-overlay"></div>
+              </div>
+              <span class="card-badge badge-wellness">
+                <i class="fa-solid fa-leaf"></i>
+                Saúde & Estética
+              </span>
             </div>
+
             <div class="card-body">
-              <h3>Drenagem Linfática</h3>
-              <p>
+              <h3 class="card-title">Drenagem Linfática</h3>
+              <p class="card-description">
                 Movimentos suaves e rítmicos que estimulam o sistema linfático,
-                reduzindo inchaços e eliminando toxinas.
+                reduzindo inchaços e eliminando toxinas naturalmente.
               </p>
+
+              <ul class="card-benefits">
+                <li><i class="fa-solid fa-check"></i> Reduz retenção</li>
+                <li><i class="fa-solid fa-check"></i> Elimina toxinas</li>
+                <li><i class="fa-solid fa-check"></i> Melhora circulação</li>
+              </ul>
+
               <div class="card-footer">
-                <div class="card-meta">
-                  <span class="meta-time"
-                    ><i class="fa-regular fa-clock"></i> 70 min</span
-                  ><span class="meta-price">R$ 140</span>
+                <div class="card-info">
+                  <span class="info-duration">
+                    <i class="fa-regular fa-clock"></i>
+                    70 minutos
+                  </span>
+                  <span class="info-price">R$ 140</span>
                 </div>
                 <a
                   href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20Drenagem%20Linfática"
                   class="card-btn"
                   target="_blank"
-                  >Agendar →</a
                 >
+                  <span>Agendar</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
             </div>
           </article>
 
+          <!-- Service Card 4 -->
           <article class="service-card reveal-up" style="--delay: 0.05s">
-            <div class="card-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&h=400&fit=crop"
-                alt="Pedras Quentes"
-                loading="lazy"
-              />
-              <span class="card-tag tag-gold">Premium</span>
+            <div class="card-header">
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&h=400&fit=crop"
+                  alt="Pedras Quentes"
+                  loading="lazy"
+                />
+                <div class="card-overlay"></div>
+              </div>
+              <span class="card-badge badge-premium">
+                <i class="fa-solid fa-gem"></i>
+                Premium
+              </span>
             </div>
+
             <div class="card-body">
-              <h3>Pedras Quentes</h3>
-              <p>
+              <h3 class="card-title">Pedras Quentes</h3>
+              <p class="card-description">
                 Massagem com pedras vulcânicas aquecidas. O calor penetra nos
-                músculos proporcionando relaxamento extremo.
+                músculos proporcionando relaxamento extremo e profundo.
               </p>
+
+              <ul class="card-benefits">
+                <li><i class="fa-solid fa-check"></i> Relaxamento profundo</li>
+                <li><i class="fa-solid fa-check"></i> Calor terapêutico</li>
+                <li><i class="fa-solid fa-check"></i> Experiência premium</li>
+              </ul>
+
               <div class="card-footer">
-                <div class="card-meta">
-                  <span class="meta-time"
-                    ><i class="fa-regular fa-clock"></i> 90 min</span
-                  ><span class="meta-price">R$ 200</span>
+                <div class="card-info">
+                  <span class="info-duration">
+                    <i class="fa-regular fa-clock"></i>
+                    90 minutos
+                  </span>
+                  <span class="info-price">R$ 200</span>
                 </div>
                 <a
                   href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20Pedras%20Quentes"
                   class="card-btn"
                   target="_blank"
-                  >Agendar →</a
                 >
+                  <span>Agendar</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
             </div>
           </article>
 
+          <!-- Service Card 5 -->
           <article class="service-card reveal-up" style="--delay: 0.1s">
-            <div class="card-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&h=400&fit=crop"
-                alt="Reflexologia Podal"
-                loading="lazy"
-              />
+            <div class="card-header">
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&h=400&fit=crop"
+                  alt="Reflexologia Podal"
+                  loading="lazy"
+                />
+                <div class="card-overlay"></div>
+              </div>
             </div>
+
             <div class="card-body">
-              <h3>Reflexologia Podal</h3>
-              <p>
+              <h3 class="card-title">Reflexologia Podal</h3>
+              <p class="card-description">
                 Técnica milenar que estimula pontos reflexos nos pés conectados
-                a órgãos e sistemas. Equilíbrio energético total.
+                a órgãos e sistemas, promovendo equilíbrio energético total.
               </p>
+
+              <ul class="card-benefits">
+                <li><i class="fa-solid fa-check"></i> Equilíbrio energético</li>
+                <li><i class="fa-solid fa-check"></i> Estimula órgãos</li>
+                <li><i class="fa-solid fa-check"></i> Relaxamento profundo</li>
+              </ul>
+
               <div class="card-footer">
-                <div class="card-meta">
-                  <span class="meta-time"
-                    ><i class="fa-regular fa-clock"></i> 45 min</span
-                  ><span class="meta-price">R$ 90</span>
+                <div class="card-info">
+                  <span class="info-duration">
+                    <i class="fa-regular fa-clock"></i>
+                    45 minutos
+                  </span>
+                  <span class="info-price">R$ 90</span>
                 </div>
                 <a
                   href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20Reflexologia%20Podal"
                   class="card-btn"
                   target="_blank"
-                  >Agendar →</a
                 >
+                  <span>Agendar</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
             </div>
           </article>
 
+          <!-- Service Card 6 -->
           <article class="service-card reveal-up" style="--delay: 0.15s">
-            <div class="card-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop"
-                alt="Massagem Modeladora"
-                loading="lazy"
-              />
-              <span class="card-tag tag-sage">Estética</span>
+            <div class="card-header">
+              <div class="card-image">
+                <img
+                  src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop"
+                  alt="Massagem Modeladora"
+                  loading="lazy"
+                />
+                <div class="card-overlay"></div>
+              </div>
+              <span class="card-badge badge-wellness">
+                <i class="fa-solid fa-leaf"></i>
+                Estética
+              </span>
             </div>
+
             <div class="card-body">
-              <h3>Massagem Modeladora</h3>
-              <p>
-                Movimentos firmes que atuam na gordura localizada e celulite.
-                Melhora o contorno corporal e ativa a circulação.
+              <h3 class="card-title">Massagem Modeladora</h3>
+              <p class="card-description">
+                Movimentos firmes que atuam na gordura localizada e celulite,
+                melhorando o contorno corporal e ativando a circulação.
               </p>
+
+              <ul class="card-benefits">
+                <li><i class="fa-solid fa-check"></i> Define contorno</li>
+                <li><i class="fa-solid fa-check"></i> Reduz celulite</li>
+                <li><i class="fa-solid fa-check"></i> Ativa circulação</li>
+              </ul>
+
               <div class="card-footer">
-                <div class="card-meta">
-                  <span class="meta-time"
-                    ><i class="fa-regular fa-clock"></i> 60 min</span
-                  ><span class="meta-price">R$ 130</span>
+                <div class="card-info">
+                  <span class="info-duration">
+                    <i class="fa-regular fa-clock"></i>
+                    60 minutos
+                  </span>
+                  <span class="info-price">R$ 130</span>
                 </div>
                 <a
                   href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20Massagem%20Modeladora"
                   class="card-btn"
                   target="_blank"
-                  >Agendar →</a
                 >
+                  <span>Agendar</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
             </div>
           </article>
@@ -375,332 +559,265 @@
       </div>
     </section>
 
-    <section class="parallax-quote">
-      <div class="parallax-bg"></div>
-      <div class="parallax-overlay"></div>
-      <div class="parallax-content reveal-up">
-        <h2>
-          Cada corpo é único.<br /><em>Seu tratamento também deve ser.</em>
-        </h2>
-        <a
-          href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20saber%20mais"
-          class="btn btn-primary btn-glow"
-          target="_blank"
-          >Fale Comigo</a
-        >
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content reveal-up">
+          <div class="cta-text">
+            <h2>
+              Cada corpo é único.<br /><em>Seu tratamento também deve ser.</em>
+            </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+          <a
+            href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação"
+            class="btn btn-primary btn-large"
+            target="_blank"
+          >
+            <span class="btn-content">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Falar com a Massoterapeuta</span>
+            </span>
+            <span class="btn-background"></span>
+          </a>
+        </div>
       </div>
     </section>
 
+    <!-- BENEFITS -->
     <section class="benefits" id="beneficios">
       <div class="container">
         <div class="section-header reveal-up">
           <span class="section-tag">Por que Escolher</span>
           <h2 class="section-title">Benefícios da <em>Massoterapia</em></h2>
+          <p class="section-sub">
+            Descubra como a massoterapia pode transformar sua qualidade de vida
+          </p>
         </div>
+
         <div class="benefits-grid">
           <div class="benefit-card reveal-up" style="--delay: 0.05s">
-            <div class="benefit-num">01</div>
             <div class="benefit-icon">
-              <i class="fa-solid fa-hands-holding-circle"></i>
+              <i class="fa-solid fa-hand-holding-heart"></i>
             </div>
-            <h3>Alívio de Dores</h3>
-            <p>
-              Redução de dores musculares, cervicais e lombares com técnicas
-              especializadas.
-            </p>
+            <div class="benefit-content">
+              <h3>Alívio de Dores</h3>
+              <p>
+                Redução eficaz de dores musculares, cervicais e lombares através
+                de técnicas especializadas e personalizadas.
+              </p>
+            </div>
           </div>
 
           <div class="benefit-card reveal-up" style="--delay: 0.1s">
-            <div class="benefit-num">02</div>
-            <div class="benefit-icon"><i class="fa-solid fa-spa"></i></div>
-            <h3>Menos Estresse</h3>
-            <p>
-              Diminuição do cortisol e aumento dos hormônios do bem-estar e
-              relaxamento.
-            </p>
+            <div class="benefit-icon">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="benefit-content">
+              <h3>Menos Estresse</h3>
+              <p>
+                Diminuição do cortisol e aumento dos hormônios do bem-estar,
+                promovendo relaxamento mental profundo.
+              </p>
+            </div>
           </div>
 
           <div class="benefit-card reveal-up" style="--delay: 0.15s">
-            <div class="benefit-num">03</div>
             <div class="benefit-icon">
               <i class="fa-solid fa-heart-pulse"></i>
             </div>
-            <h3>Circulação</h3>
-            <p>
-              Estímulo ao fluxo sanguíneo e linfático, melhor oxigenação dos
-              tecidos.
-            </p>
+            <div class="benefit-content">
+              <h3>Melhor Circulação</h3>
+              <p>
+                Estímulo ao fluxo sanguíneo e linfático, proporcionando melhor
+                oxigenação dos tecidos e vitalidade.
+              </p>
+            </div>
           </div>
 
           <div class="benefit-card reveal-up" style="--delay: 0.05s">
-            <div class="benefit-num">04</div>
-            <div class="benefit-icon"><i class="fa-solid fa-moon"></i></div>
-            <h3>Sono Reparador</h3>
-            <p>
-              Melhora na qualidade do sono com relaxamento muscular e mental
-              profundo.
-            </p>
+            <div class="benefit-icon">
+              <i class="fa-solid fa-moon"></i>
+            </div>
+            <div class="benefit-content">
+              <h3>Sono Reparador</h3>
+              <p>
+                Melhora significativa na qualidade do sono através de
+                relaxamento muscular e mental profundo.
+              </p>
+            </div>
           </div>
 
           <div class="benefit-card reveal-up" style="--delay: 0.1s">
-            <div class="benefit-num">05</div>
             <div class="benefit-icon">
-              <i class="fa-solid fa-child-reaching"></i>
+              <i class="fa-solid fa-person-walking"></i>
             </div>
-            <h3>Flexibilidade</h3>
-            <p>Aumento da amplitude de movimentos e elasticidade muscular.</p>
+            <div class="benefit-content">
+              <h3>Mais Flexibilidade</h3>
+              <p>
+                Aumento da amplitude de movimentos e elasticidade muscular,
+                melhorando a mobilidade diária.
+              </p>
+            </div>
           </div>
 
           <div class="benefit-card reveal-up" style="--delay: 0.15s">
-            <div class="benefit-num">06</div>
             <div class="benefit-icon">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <i class="fa-solid fa-sparkles"></i>
             </div>
-            <h3>Bem-Estar</h3>
-            <p>
-              Equilíbrio entre corpo e mente, elevando autoestima e qualidade de
-              vida.
-            </p>
+            <div class="benefit-content">
+              <h3>Bem-Estar Integral</h3>
+              <p>
+                Equilíbrio perfeito entre corpo e mente, elevando autoestima e
+                promovendo qualidade de vida.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- <section class="testimonials" id="depoimentos">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-tag tag-light">Depoimentos</span>
-          <h2 class="section-title title-light">
-            O que dizem nossos <em>clientes</em>
-          </h2>
-        </div>
-        <div class="testimonials-wrapper">
-          <div class="testimonials-track" id="testimonialsTrack">
-            <div class="testimonial-card">
-              <div class="t-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-                ><i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "Sofria com dores nas costas há anos. Depois de poucas sessões,
-                a melhora foi incrível. Profissional dedicada e muito
-                competente!"
-              </p>
-              <div class="t-author">
-                <div class="t-avatar">M</div>
-                <div>
-                  <strong>Maria Silva</strong><span>Cliente há 2 anos</span>
-                </div>
-              </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="t-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-                ><i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "A massagem com pedras quentes mudou minha vida! Saio de cada
-                sessão como pessoa nova. Ambiente acolhedor e atendimento
-                impecável."
-              </p>
-              <div class="t-author">
-                <div class="t-avatar">J</div>
-                <div>
-                  <strong>João Mendes</strong><span>Cliente há 1 ano</span>
-                </div>
-              </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="t-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-                ><i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "Faço drenagem toda semana e os resultados são visíveis. Cada
-                sessão é um momento de paz e autocuidado que preciso demais."
-              </p>
-              <div class="t-author">
-                <div class="t-avatar">A</div>
-                <div>
-                  <strong>Ana Oliveira</strong><span>Cliente há 3 anos</span>
-                </div>
-              </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="t-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-                ><i class="fa-solid fa-star"></i>
-              </div>
-              <p>
-                "Atleta amador, precisava de recuperação muscular. As sessões
-                terapêuticas me ajudaram muito na performance e no bem-estar
-                geral."
-              </p>
-              <div class="t-author">
-                <div class="t-avatar">R</div>
-                <div>
-                  <strong>Rafael Costa</strong><span>Cliente há 6 meses</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="slider-nav">
-          <button class="slider-btn" id="prevBtn" aria-label="Anterior">
-            <i class="fa-solid fa-arrow-left"></i>
-          </button>
-          <div class="slider-dots" id="sliderDots"></div>
-          <button class="slider-btn" id="nextBtn" aria-label="Próximo">
-            <i class="fa-solid fa-arrow-right"></i>
-          </button>
-        </div>
-      </div>
-    </section> -->
-
-    <section class="pricing">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-tag">Investimento</span>
-          <h2 class="section-title">Tabela de <em>Valores</em></h2>
-        </div>
-        <div class="pricing-card reveal-up">
-          <div class="price-row">
-            <div class="price-info">
-              <span class="price-name">Massagem Relaxante</span
-              ><span class="price-time">60 min</span>
-            </div>
-            <span class="price-val">R$ 120</span>
-          </div>
-          <div class="price-row">
-            <div class="price-info">
-              <span class="price-name">Massagem Terapêutica</span
-              ><span class="price-time">60 min</span>
-            </div>
-            <span class="price-val">R$ 150</span>
-          </div>
-          <div class="price-row">
-            <div class="price-info">
-              <span class="price-name">Drenagem Linfática</span
-              ><span class="price-time">70 min</span>
-            </div>
-            <span class="price-val">R$ 140</span>
-          </div>
-          <div class="price-row">
-            <div class="price-info">
-              <span class="price-name">Pedras Quentes</span
-              ><span class="price-time">90 min</span>
-            </div>
-            <span class="price-val price-highlight">R$ 200</span>
-          </div>
-          <div class="price-row">
-            <div class="price-info">
-              <span class="price-name">Reflexologia Podal</span
-              ><span class="price-time">45 min</span>
-            </div>
-            <span class="price-val">R$ 90</span>
-          </div>
-          <div class="price-row">
-            <div class="price-info">
-              <span class="price-name">Massagem Modeladora</span
-              ><span class="price-time">60 min</span>
-            </div>
-            <span class="price-val">R$ 130</span>
-          </div>
-          <div class="price-note">
-            <i class="fa-solid fa-leaf"></i> Pacotes com desconto — consulte via
-            WhatsApp
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- CONTACT -->
     <section class="contact" id="contato">
       <div class="container">
-        <div class="contact-grid">
+        <div class="contact-wrapper">
           <div class="contact-info reveal-left">
             <span class="section-tag">Contato</span>
-            <h2 class="section-title">Agende sua <em>sessão</em></h2>
-            <p class="contact-text">
-              Entre em contato pelo WhatsApp para agendar ou tirar dúvidas.
-              Estou à disposição!
+            <h2 class="section-title">Vamos cuidar de você</h2>
+            <p class="contact-description">
+              Entre em contato pelo WhatsApp para agendar sua sessão ou tirar
+              dúvidas. Estou à disposição para ajudá-lo no caminho do bem-estar.
             </p>
-            <div class="contact-list">
-              <div class="contact-item">
-                <span class="icon-box"
-                  ><i class="fa-solid fa-location-dot"></i
-                ></span>
-                <div>
-                  <strong>Localização</strong>
-                  <p>Blumenau, SC</p>
+
+            <div class="contact-details">
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="detail-content">
+                  <span class="detail-label">Localização</span>
+                  <span class="detail-value">Blumenau, Santa Catarina</span>
                 </div>
               </div>
-              <div class="contact-item">
-                <span class="icon-box"><i class="fa-solid fa-clock"></i></span>
-                <div>
-                  <strong>Horário</strong>
-                  <p>Seg-Sex: 8h às 19h · Sáb: 8h às 13h</p>
+
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="detail-content">
+                  <span class="detail-label">Horário de Atendimento</span>
+                  <span class="detail-value">Seg-Sex: 8h às 19h</span>
+                  <span class="detail-value">Sábado: 8h às 13h</span>
                 </div>
               </div>
-              <div class="contact-item">
-                <span class="icon-box"
-                  ><i class="fa-brands fa-whatsapp"></i
-                ></span>
-                <div>
-                  <strong>WhatsApp</strong>
-                  <p>(47) 99999-9999</p>
+
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="detail-content">
+                  <span class="detail-label">WhatsApp</span>
+                  <span class="detail-value">(47) 99999-9999</span>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="contact-cta reveal-right">
-            <div class="cta-box">
-              <span class="cta-icon"><i class="fa-solid fa-leaf"></i></span>
-              <h3>Pronta para renovar?</h3>
+            <div class="cta-card">
+              <div class="cta-icon">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                  <path
+                    d="M24 4C24 4 12 12 12 24C12 30.6274 17.3726 36 24 36C30.6274 36 36 30.6274 36 24C36 12 24 4 24 4Z"
+                    fill="currentColor"
+                    opacity="0.1"
+                  />
+                  <path
+                    d="M24 4C24 4 12 12 12 24C12 30.6274 17.3726 36 24 36C30.6274 36 36 30.6274 36 24C36 12 24 4 24 4Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <h3>Pronta para sua jornada de bem-estar?</h3>
               <p>
-                Agende agora sua sessão e comece sua jornada de autocuidado.
+                Agende agora sua primeira sessão e comece a transformação que
+                seu corpo e mente merecem.
               </p>
+
               <a
                 href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20sessão"
-                class="btn btn-whatsapp"
+                class="btn btn-whatsapp btn-large"
                 target="_blank"
               >
-                <i class="fa-brands fa-whatsapp"></i>
-                Agendar pelo WhatsApp
+                <span class="btn-content">
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span>Agendar pelo WhatsApp</span>
+                </span>
               </a>
-              <small>Respondo em até 1h no horário de atendimento</small>
+
+              <span class="cta-note">
+                <i class="fa-solid fa-clock"></i>
+                Resposta em até 1 hora no horário de atendimento
+              </span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="container">
-        <div class="footer-brand">
-          <i class="fa-solid fa-leaf"></i> <span>Dali Massoterapeuta</span>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path
+                  d="M16 2C16 2 8 8 8 16C8 20.4183 11.5817 24 16 24C20.4183 24 24 20.4183 24 16C24 8 16 2 16 2Z"
+                  fill="currentColor"
+                  opacity="0.2"
+                />
+                <path
+                  d="M16 2C16 2 8 8 8 16C8 20.4183 11.5817 24 16 24C20.4183 24 24 20.4183 24 16C24 8 16 2 16 2Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>Dali Massoterapeuta</span>
+            </div>
+            <p class="footer-tagline">Massoterapia & Bem-Estar</p>
+          </div>
+
+          <nav class="footer-nav">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#beneficios">Benefícios</a>
+            <a href="#contato">Contato</a>
+          </nav>
         </div>
-        <p class="footer-sub">Massoterapia & Bem-Estar</p>
-        <div class="footer-links">
-          <a href="#inicio">Início</a><a href="#sobre">Sobre</a
-          ><a href="#servicos">Serviços</a><a href="#contato">Contato</a>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Dali Massoterapeuta. Todos os direitos reservados.</p>
         </div>
-        <p class="footer-copy">
-          &copy; 2026 Dali Massoterapeuta — Todos os direitos reservados
-        </p>
       </div>
     </footer>
 
+    <!-- WHATSAPP FLOAT -->
     <a
       href="https://wa.me/5547999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20sessão"
-      class="wpp-float"
+      class="whatsapp-float"
       target="_blank"
       aria-label="WhatsApp"
     >
       <i class="fa-brands fa-whatsapp"></i>
+      <span class="float-tooltip">Fale conosco</span>
     </a>
 
     <script src="script.js"></script>

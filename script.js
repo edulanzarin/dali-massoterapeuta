@@ -1,258 +1,465 @@
 /* ============================================
-   ESPAÇO RENOVA — JavaScript
+   DALI MASSOTERAPEUTA — MODERN JAVASCRIPT
    ============================================ */
 
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. NAVBAR SCROLL EFFECT
-  const navbar = document.getElementById("navbar");
+class SiteController {
+  constructor() {
+    this.navbar = document.getElementById("navbar");
+    this.hamburger = document.getElementById("hamburger");
+    this.navLinks = document.getElementById("navLinks");
+    this.overlay = document.getElementById("mobileOverlay");
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
-
-  // 2. MOBILE MENU TOGGLE
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("navLinks");
-  const overlay = document.getElementById("mobileOverlay");
-  const navItems = document.querySelectorAll(".nav-links a");
-
-  function toggleMenu() {
-    hamburger.classList.toggle("active");
-    navLinks.classList.toggle("active");
-    overlay.classList.toggle("active");
-    document.body.style.overflow = navLinks.classList.contains("active")
-      ? "hidden"
-      : "";
+    this.init();
   }
 
-  hamburger.addEventListener("click", toggleMenu);
-  overlay.addEventListener("click", toggleMenu);
-
-  navItems.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (navLinks.classList.contains("active")) toggleMenu();
-    });
-  });
-
-  // 3. SMOOTH SCROLL (Corrigido para compensar navbar)
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const target = document.querySelector(targetId);
-      if (target) {
-        const headerOffset = 80;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-
-  // 4. HERO PARTICLES
-  const heroParticles = document.getElementById("heroParticles");
-  if (heroParticles) {
-    for (let i = 0; i < 20; i++) {
-      const particle = document.createElement("div");
-      particle.style.cssText = `
-        position: absolute;
-        width: ${Math.random() * 4 + 1}px;
-        height: ${Math.random() * 4 + 1}px;
-        background: rgba(255,255,255, ${Math.random() * 0.5});
-        border-radius: 50%;
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-        animation: float-up ${Math.random() * 10 + 5}s linear infinite;
-      `;
-      // Adiciona animação css dinamicamente se necessário,
-      // mas aqui estamos usando apenas positioning para simplificar
-      // Se tiver a keyframe no CSS (hero particles), isso já funciona visualmente.
-      heroParticles.appendChild(particle);
-    }
+  init() {
+    this.setupNavbar();
+    this.setupMobileMenu();
+    this.setupSmoothScroll();
+    this.setupRevealAnimations();
+    this.setupCounters();
+    this.setupLazyLoading();
   }
 
-  // 5. REVEAL ON SCROLL
-  const revealElements = document.querySelectorAll(
-    ".reveal-up, .reveal-left, .reveal-right",
-  );
+  // NAVBAR SCROLL EFFECT
+  setupNavbar() {
+    let lastScroll = 0;
+    let ticking = false;
 
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 },
-  );
+    window.addEventListener(
+      "scroll",
+      () => {
+        lastScroll = window.scrollY;
 
-  revealElements.forEach((el) => revealObserver.observe(el));
-
-  // 6. NUMBERS COUNTER
-  const counters = document.querySelectorAll("[data-count]");
-
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const counter = entry.target;
-          const target = +counter.getAttribute("data-count");
-          const duration = 2000;
-          const stepTime = Math.abs(Math.floor(duration / target));
-
-          let current = 0;
-          const timer = setInterval(() => {
-            current += 1;
-            counter.textContent = current;
-            if (current >= target) {
-              clearInterval(timer);
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            if (lastScroll > 50) {
+              this.navbar.classList.add("scrolled");
+            } else {
+              this.navbar.classList.remove("scrolled");
             }
-          }, stepTime);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true },
+    );
+  }
 
-          counterObserver.unobserve(counter);
+  // MOBILE MENU
+  setupMobileMenu() {
+    const toggleMenu = () => {
+      const isActive = this.navLinks.classList.toggle("active");
+      this.hamburger.classList.toggle("active");
+      this.overlay.classList.toggle("active");
+      document.body.style.overflow = isActive ? "hidden" : "";
+    };
+
+    this.hamburger?.addEventListener("click", toggleMenu);
+    this.overlay?.addEventListener("click", toggleMenu);
+
+    // Close on link click
+    const navItems = this.navLinks?.querySelectorAll("a");
+    navItems?.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (this.navLinks.classList.contains("active")) {
+          toggleMenu();
         }
       });
-    },
-    { threshold: 0.5 },
-  );
+    });
 
-  counters.forEach((counter) => counterObserver.observe(counter));
+    // Close on escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && this.navLinks.classList.contains("active")) {
+        toggleMenu();
+      }
+    });
+  }
 
-  // 7. TESTIMONIALS CAROUSEL (Lógica Robusta)
-  const track = document.getElementById("testimonialsTrack");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const dotsContainer = document.getElementById("sliderDots");
+  // SMOOTH SCROLL
+  setupSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
 
-  if (track && prevBtn && nextBtn) {
-    const cards = Array.from(track.children);
-    let currentIndex = 0;
+        // Ignore empty anchors
+        if (href === "#" || href === "#!") return;
 
-    // Calcula quantos cards cabem na tela
-    function getCardsPerView() {
-      if (window.innerWidth >= 1024) return 3;
-      if (window.innerWidth >= 768) return 2;
-      return 1;
-    }
+        e.preventDefault();
+        const target = document.querySelector(href);
 
-    function updateCarousel() {
-      const cardsPerView = getCardsPerView();
-      const cardWidth = track.offsetWidth / cardsPerView;
-      // Precisamos subtrair o gap visualmente se usarmos margin,
-      // mas com flex gap o calculo de translate % é mais seguro:
+        if (target) {
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.pageYOffset - headerOffset;
 
-      const widthPercentage = 100 / cardsPerView;
-      // Adiciona gap no calculo
-      const gap = 20; // igual ao css
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      });
+    });
+  }
 
-      // Movimento básico: width do card + gap
-      const moveAmount = track.parentElement.offsetWidth / cardsPerView;
+  // REVEAL ANIMATIONS
+  setupRevealAnimations() {
+    const revealElements = document.querySelectorAll(
+      ".reveal-up, .reveal-left, .reveal-right",
+    );
 
-      // Simplesmente move baseado no índice e largura do container
-      // Ajuste fino: usamos translateX em porcentagem para ser fluido
-      const percentage = -(currentIndex * (100 / cardsPerView));
-      // Gap compensation logic is complex, simpler approach for grid:
+    if (!revealElements.length) return;
 
-      // Abordagem Simplificada que funciona com o CSS Grid/Flex Gap:
-      const itemWidth = cards[0].offsetWidth + 20; // 20 é o gap
-      track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-
-      // Atualiza dots
-      updateDots();
-    }
-
-    function createDots() {
-      dotsContainer.innerHTML = "";
-      const totalViews = Math.ceil(cards.length - getCardsPerView() + 1);
-      // Evita dots negativos ou excessivos
-      const dotsCount = cards.length - getCardsPerView() + 1;
-
-      for (let i = 0; i < (dotsCount > 0 ? dotsCount : 1); i++) {
-        const dot = document.createElement("div");
-        dot.classList.add("slider-dot");
-        if (i === currentIndex) dot.classList.add("active");
-        dot.addEventListener("click", () => {
-          currentIndex = i;
-          updateCarousel();
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            revealObserver.unobserve(entry.target);
+          }
         });
-        dotsContainer.appendChild(dot);
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      },
+    );
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  }
+
+  // ANIMATED COUNTERS
+  setupCounters() {
+    const counters = document.querySelectorAll("[data-count]");
+    if (!counters.length) return;
+
+    const animateCounter = (counter) => {
+      const target = parseInt(counter.getAttribute("data-count"));
+      const duration = 2000;
+      const steps = 60;
+      const increment = target / steps;
+      const stepTime = duration / steps;
+
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          counter.textContent = target;
+          clearInterval(timer);
+        } else {
+          counter.textContent = Math.floor(current);
+        }
+      }, stepTime);
+    };
+
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    counters.forEach((counter) => counterObserver.observe(counter));
+  }
+
+  // LAZY LOADING IMAGES
+  setupLazyLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+
+    if ("loading" in HTMLImageElement.prototype) {
+      // Browser supports native lazy loading
+      return;
+    }
+
+    // Fallback for browsers without native lazy loading
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src || img.src;
+          img.classList.add("loaded");
+          imageObserver.unobserve(img);
+        }
+      });
+    });
+
+    images.forEach((img) => imageObserver.observe(img));
+  }
+}
+
+// WHATSAPP FLOAT ANIMATION
+class WhatsAppFloat {
+  constructor() {
+    this.button = document.querySelector(".whatsapp-float");
+    if (this.button) {
+      this.init();
+    }
+  }
+
+  init() {
+    let lastScroll = 0;
+    window.addEventListener(
+      "scroll",
+      () => {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > 300) {
+          this.button.style.opacity = "1";
+          this.button.style.visibility = "visible";
+        } else {
+          this.button.style.opacity = "0";
+          this.button.style.visibility = "hidden";
+        }
+
+        lastScroll = currentScroll;
+      },
+      { passive: true },
+    );
+  }
+}
+
+// FORM VALIDATION (if needed)
+class FormValidator {
+  constructor(form) {
+    this.form = form;
+    if (this.form) {
+      this.init();
+    }
+  }
+
+  init() {
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.validate();
+    });
+  }
+
+  validate() {
+    const inputs = this.form.querySelectorAll("input, textarea");
+    let isValid = true;
+
+    inputs.forEach((input) => {
+      if (input.hasAttribute("required") && !input.value.trim()) {
+        this.showError(input, "Este campo é obrigatório");
+        isValid = false;
+      } else {
+        this.removeError(input);
+      }
+    });
+
+    if (isValid) {
+      this.submitForm();
+    }
+  }
+
+  showError(input, message) {
+    const parent = input.parentElement;
+    const error =
+      parent.querySelector(".error-message") || document.createElement("span");
+    error.className = "error-message";
+    error.textContent = message;
+    error.style.color = "#ef4444";
+    error.style.fontSize = "0.875rem";
+    error.style.marginTop = "4px";
+
+    if (!parent.querySelector(".error-message")) {
+      parent.appendChild(error);
+    }
+
+    input.style.borderColor = "#ef4444";
+  }
+
+  removeError(input) {
+    const parent = input.parentElement;
+    const error = parent.querySelector(".error-message");
+    if (error) {
+      error.remove();
+    }
+    input.style.borderColor = "";
+  }
+
+  submitForm() {
+    // Handle form submission
+    console.log("Form submitted successfully");
+  }
+}
+
+// PERFORMANCE OPTIMIZATION
+class PerformanceOptimizer {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    // Preload critical resources
+    this.preloadImages();
+
+    // Defer non-critical scripts
+    this.deferScripts();
+
+    // Setup intersection observer for animations
+    this.setupPerformanceMonitoring();
+  }
+
+  preloadImages() {
+    const criticalImages = document.querySelectorAll("[data-preload]");
+    criticalImages.forEach((img) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = img.src || img.dataset.src;
+      document.head.appendChild(link);
+    });
+  }
+
+  deferScripts() {
+    const scripts = document.querySelectorAll("script[data-defer]");
+    scripts.forEach((script) => {
+      script.defer = true;
+    });
+  }
+
+  setupPerformanceMonitoring() {
+    if ("PerformanceObserver" in window) {
+      // Monitor Largest Contentful Paint
+      const lcpObserver = new PerformanceObserver((entries) => {
+        const lastEntry = entries.getEntries().pop();
+        console.log("LCP:", lastEntry.renderTime || lastEntry.loadTime);
+      });
+
+      try {
+        lcpObserver.observe({ entryTypes: ["largest-contentful-paint"] });
+      } catch (e) {
+        // LCP not supported
       }
     }
+  }
+}
 
-    function updateDots() {
-      const dots = dotsContainer.querySelectorAll(".slider-dot");
-      dots.forEach((dot, index) => {
-        if (index === currentIndex) dot.classList.add("active");
-        else dot.classList.remove("active");
+// ACCESSIBILITY ENHANCEMENTS
+class AccessibilityEnhancer {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.setupKeyboardNavigation();
+    this.setupFocusManagement();
+    this.setupARIA();
+  }
+
+  setupKeyboardNavigation() {
+    // Tab trap for mobile menu
+    const focusableElements =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const modal = document.getElementById("navLinks");
+
+    if (modal) {
+      const firstFocusable = modal.querySelectorAll(focusableElements)[0];
+      const focusableContent = modal.querySelectorAll(focusableElements);
+      const lastFocusable = focusableContent[focusableContent.length - 1];
+
+      document.addEventListener("keydown", (e) => {
+        if (!modal.classList.contains("active")) return;
+
+        if (e.key === "Tab") {
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusable) {
+              lastFocusable.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === lastFocusable) {
+              firstFocusable.focus();
+              e.preventDefault();
+            }
+          }
+        }
       });
     }
+  }
 
-    nextBtn.addEventListener("click", () => {
-      const maxIndex = cards.length - getCardsPerView();
-      if (currentIndex < maxIndex) {
-        currentIndex++;
-      } else {
-        currentIndex = 0; // Loop
+  setupFocusManagement() {
+    // Add visible focus indicators
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        document.body.classList.add("keyboard-nav");
       }
-      updateCarousel();
     });
 
-    prevBtn.addEventListener("click", () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-      } else {
-        currentIndex = cards.length - getCardsPerView(); // Loop
+    document.addEventListener("mousedown", () => {
+      document.body.classList.remove("keyboard-nav");
+    });
+  }
+
+  setupARIA() {
+    // Add aria-current to active nav links
+    const currentPath = window.location.hash;
+    if (currentPath) {
+      const activeLink = document.querySelector(`a[href="${currentPath}"]`);
+      if (activeLink) {
+        activeLink.setAttribute("aria-current", "page");
       }
-      updateCarousel();
-    });
-
-    // Resize Event
-    window.addEventListener("resize", () => {
-      currentIndex = 0; // Reseta para evitar bugs visuais
-      createDots();
-      updateCarousel();
-    });
-
-    // Touch / Swipe
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    track.addEventListener(
-      "touchstart",
-      (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      },
-      { passive: true },
-    );
-
-    track.addEventListener(
-      "touchend",
-      (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-      },
-      { passive: true },
-    );
-
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 50) nextBtn.click();
-      if (touchEndX > touchStartX + 50) prevBtn.click();
     }
+  }
+}
 
-    // Inicialização
-    createDots();
-    // Pequeno delay para garantir que o layout renderizou
-    setTimeout(updateCarousel, 100);
+// INITIALIZE EVERYTHING
+document.addEventListener("DOMContentLoaded", () => {
+  // Core functionality
+  new SiteController();
+  new WhatsAppFloat();
+
+  // Performance optimizations
+  new PerformanceOptimizer();
+
+  // Accessibility enhancements
+  new AccessibilityEnhancer();
+
+  // Initialize form validation if form exists
+  const contactForm = document.querySelector(".contact-form");
+  if (contactForm) {
+    new FormValidator(contactForm);
+  }
+
+  // Add loading complete class
+  window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
+  });
+});
+
+// HANDLE ORIENTATION CHANGE
+window.addEventListener("orientationchange", () => {
+  // Close mobile menu on orientation change
+  const navLinks = document.getElementById("navLinks");
+  const hamburger = document.getElementById("hamburger");
+  const overlay = document.getElementById("mobileOverlay");
+
+  if (navLinks?.classList.contains("active")) {
+    navLinks.classList.remove("active");
+    hamburger?.classList.remove("active");
+    overlay?.classList.remove("active");
+    document.body.style.overflow = "";
   }
 });
+
+// SERVICE WORKER REGISTRATION (Optional - for PWA)
+if ("serviceWorker" in navigator && window.location.protocol === "https:") {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((registration) => {
+        console.log("Service Worker registered successfully");
+      })
+      .catch((error) => {
+        console.log("Service Worker registration failed:", error);
+      });
+  });
+}
